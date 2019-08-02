@@ -1,0 +1,12 @@
+*.jpg
+*.exe
+*.pdb
+*.ilk
+*.iobj
+*.ipdb
+
+.vs/*
+FaceDetectionService/Debug/*
+FaceDetectionService/x64/Debug/*
+FaceDetectionService/Release/*
+FaceDetectionService/x64/Release/*
