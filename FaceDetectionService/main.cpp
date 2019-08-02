@@ -35,6 +35,12 @@ using HttpServer = SimpleWeb::Server<SimpleWeb::HTTP>;
 using HttpClient = SimpleWeb::Client<SimpleWeb::HTTP>;
 
 
+#if defined(WIN32) || defined(_WIN32) 
+#define PATH_SEPARATOR "\\" 
+#else 
+#define PATH_SEPARATOR "/" 
+#endif 
+
 void readAndSendData(const shared_ptr<HttpServer::Response>& response, const shared_ptr<ifstream>& ifs);
 
 void processImageParam(stringstream& stream);
@@ -179,7 +185,8 @@ void detectAndSave(Mat image) {
         rectangle(image, faceRect, Scalar(255, 0, 255));
     }
 
-    if (!imwrite("web\\image.jpg", image)) {
+    std::string filename = "web" + std::string(PATH_SEPARATOR) + "image.jpg";
+    if (!imwrite(filename, image)) {
         throw std::exception("Cannot save image");
     }
 }
